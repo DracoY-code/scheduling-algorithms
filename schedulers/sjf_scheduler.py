@@ -45,7 +45,7 @@ class Scheduler:
     """The class to implement the SJF scheduler.
     """
     def __init__(self) -> None:
-        print('<<< Shortest Job First Scheduler: Non-Preemptive >>>\n')
+        print('<<< Shortest Job First Scheduler >>>\n')
         self.running: Process | None = None
         self.ready_queue: list[Process] = []
         self.history: list[Process] = []
