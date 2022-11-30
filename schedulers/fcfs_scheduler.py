@@ -29,6 +29,8 @@ class Process:
         if self.turnaround_t is None:
             return
         self.waiting_t = self.turnaround_t - self.burst_t
+        if self.waiting_t < 0:
+            self.waiting_t = 0
 
     def print_process_data(self) -> None:
         """Prints the process details.
@@ -56,6 +58,7 @@ class Scheduler:
         """
         if self.running is None:
             self.running = p
+            self.total_t += self.running.arrival_t
         else:
             self.ready_queue.append(p)
 
