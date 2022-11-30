@@ -88,7 +88,10 @@ class Scheduler:
             if p.turnaround_t is None:
                 raise Exceptions.MissingTurnaroundTimeError(p)
             total_turnaround_t += p.turnaround_t
-        return total_turnaround_t / len(self.history)
+        try:
+            return total_turnaround_t / len(self.history)
+        except ZeroDivisionError:
+            return 0
     
     def calc_avg_waiting_t(self) -> float:
         """Calculates and returns the average waiting time of the scheduler.
@@ -98,7 +101,10 @@ class Scheduler:
             if p.waiting_t is None:
                 raise Exceptions.MissingWaitingTimeError(p)
             total_waiting_t += p.waiting_t
-        return total_waiting_t / len(self.history)
+        try:
+            return total_waiting_t / len(self.history)
+        except ZeroDivisionError:
+            return 0
 
     def print_gantt_chart(self) -> None:
         """Prints the Gantt chart for the scheduled processes.
